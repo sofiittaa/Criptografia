@@ -2,8 +2,8 @@
 
  $host = 'localhost';
  $dbname = 'login_system';
- $username = 'root';
-$password = '';
+ $username = 'sofiittaa';
+$password = 'sofi123.20';
 
 try {
    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username , $password );
