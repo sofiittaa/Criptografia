@@ -75,8 +75,7 @@ $telefono_descifrado = !empty($user['telefono_cifrado'])
                     <div class="info -box" style="margin -top: 20px; background: #f0fff4;">
                         <h4 >Datos Cifrados (RSA -2048) </h4 > <ul >
                         <li ><strong >Token cifrado (Base64):</strong >
-                        <small ><?php echo htmlspecialchars(substr( $_SESSION ['
-                        token_rsa_cifrado'] ?? 'N/A', 0, 30)); ?>... </ small ></li >
+                        <small ><?php echo htmlspecialchars(substr($_SESSION['token_rsa_cifrado'] ?? 'N/A', 0, 30)); ?>... </ small ></li >
                         <li ><strong >Token descifrado :</strong >
                         <?php echo htmlspecialchars( $_SESSION ['token_rsa_descifrado'] ?? 'N/A'); ?>
                         </li >
@@ -85,6 +84,14 @@ $telefono_descifrado = !empty($user['telefono_cifrado'])
                     </div >
                 </div >
         </div >
+            <!-- Enlace de demostración HMAC dentro del contenedor principal -->
+                <div style="margin-top: 20px; text-align: center;">
+                <a href="validar_integridad.php" target="_blank" class="btn btn-primary"
+                style="width: auto; padding: 10px 20px;">
+
+                Probar Validación HMAC
+                </a>
+                </div>
     </div >
 </body >
 </html >
