@@ -42,3 +42,6 @@ criptográficos fundamentales:
  - OpenSSL (Extensión criptográfica)
  - HTML5 / CSS3
  - Git / GitHub
+
+
+...
