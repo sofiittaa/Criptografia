@@ -1,6 +1,8 @@
 <?php
  session_start();
 require_once '../config/database.php';
+require_once '../config/crypto.php';
+
 $error = '';
 $success = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -8,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
+    $telefono = trim($_POST['telefono'] ?? '');
 
     if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
         $error = 'Todos los campos son requeridos';
@@ -26,9 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // La funcion password_hash() genera un hash seguro con un salt aleatorio
             // El hash es irreversible, protegiendo la contraseña incluso si la BD es robada
+             // Cifrado simétrico del teléfono previo al almacenamiento
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-            if ($stmt->execute([$username, $email, $hashed_password])) {
+            $telefono_cifrado = !empty( $telefono ) ? cifrarAES256 ( $telefono ) : null;
+            $stmt = $pdo->prepare("INSERT INTO users (username, email, password, telefono_cifrado) VALUES (?, ?, ?, ?)");
+            if ($stmt->execute([$username, $email, $hashed_password, $telefono_cifrado])) {
                 $success = '¡Registro exitoso!';
             } else {
                 $error = 'Registro fallido. Por favor, intentelo nuevamente.';
@@ -62,6 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="username" name="username" required >
             </div >
             <div class="form-group">
+                <label  for="telefono">Telefono (opcional)</label>
+                <input type="text" id="telefono" name="telefono" placeholder ="Ej: 555 -1234">
+            </div>
+            <div class="form-group">
                 <label for="email">Email </label >
                 <input type="email" id="email" name="email" required >
             </div >
@@ -78,6 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form >
         <p class="link">¿Ya tienes cuenta? <a href="login.php">Ingresa </a></p>
     </div >
+
+    
+
 </div >
 </body >
 </html >
