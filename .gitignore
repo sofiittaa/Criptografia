@@ -3,21 +3,21 @@ config/publica.key
 config/database.php
 
 # Claves privadas - ¡NUNCA SUBIR A REPOSITORIOS PÚBLICOS!
-2 config/privada.key
-3 config/*.key
-4
-5 # Archivos de configuración de entornos de desarrollo (IDEs)
-6 .vscode/
-7 .idea/
-8
-9 # Archivos temporales y de sistema operativo
-10 *.tmp
-11 *.log
-12 *.cache
-5
-13 Thumbs.db
-14 .DS_Store
-15
-16 # Archivos de bases de datos locales
-17 *.sqlite
-18 *.db
+config/privada.key
+config/*.key
+
+# Archivos de configuración de entornos de desarrollo (IDEs)
+.vscode/
+.idea/
+
+# Archivos temporales y de sistema operativo
+*.tmp
+*.log
+*.cache
+
+Thumbs.db
+.DS_Store
+
+# Archivos de bases de datos locales
+*.sqlite
+*.db

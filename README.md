@@ -27,7 +27,6 @@ criptográficos fundamentales:
  dashboard.php����
  validar_integridad.php����
  style.css���
-
  .gitignore # Reglas de exclusión de seguridad
 
  ## Requisitos e Instalación
